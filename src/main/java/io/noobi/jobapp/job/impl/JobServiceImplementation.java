@@ -47,15 +47,6 @@ public class JobServiceImplementation implements JobService {
     }
 
     @Override
-    public boolean removeAllJobs() {
-        if(jobs.isEmpty()) {
-            return false;
-        }
-        jobs.clear();
-        return true;
-    }
-
-    @Override
     public boolean updateJob(Long id,Job updatedJob) {
         for(Job job:jobs) {
             if(job.getId().equals(id)) {
@@ -70,18 +61,4 @@ public class JobServiceImplementation implements JobService {
         return false;
     }
 
-    @Override
-    public boolean updateAllJobs(Job updatedJob) {
-        if(jobs.isEmpty()) {
-            return false;
-        }
-        for(Job job:jobs) {
-            if(updatedJob.getTitle() != null) job.setTitle(updatedJob.getTitle());
-            if(updatedJob.getDescription()!=null) job.setDescription(updatedJob.getDescription());
-            if(updatedJob.getMinSalary()!=null) job.setMinSalary(updatedJob.getMinSalary());
-            if(updatedJob.getMaxSalary()!=null) job.setMaxSalary(updatedJob.getMaxSalary());
-            if(updatedJob.getLocation()!=null) job.setLocation(updatedJob.getLocation());
-        }
-        return true;
-    }
 }
