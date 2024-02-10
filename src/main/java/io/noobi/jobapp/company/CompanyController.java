@@ -27,6 +27,16 @@ public class CompanyController {
         return ResponseEntity.ok(companies);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Company> getCompany(@PathVariable Long id) {
+        Company company=companyService.getCompanyById(id);
+        if(company == null) {
+            Company dummy = new Company(0L,"DummyCompany","No company found",null);
+            return new ResponseEntity<>(dummy,HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(company);
+    }
+
     @PostMapping
     public ResponseEntity<String> createCompany(@RequestBody Company company) {
         companyService.createCompany(company);
@@ -48,7 +58,7 @@ public class CompanyController {
         if(isDeleted) {
             return ResponseEntity.ok("Company deleted successfully eith ID : "+id);
         }
-        return new ResponseEntity<>("Company with id : "+id+" not found",HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("Company with id : "+id+" Not Found!!!",HttpStatus.NOT_FOUND);
     }
 
 }

@@ -23,6 +23,11 @@ public class CompanyServiceImplementation implements CompanyService {
     }
 
     @Override
+    public Company getCompanyById(Long id) {
+        return companyRepository.findById(id).orElse(null);
+    }
+
+    @Override
     public void createCompany(Company company) {
         companyRepository.save(company);
     }
