@@ -42,4 +42,13 @@ public class CompanyController {
         return new ResponseEntity<>("There is no company present with id :" + id,HttpStatus.NOT_FOUND);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteCompany(@PathVariable Long id) {
+        boolean isDeleted = companyService.deleteCompanyById(id);
+        if(isDeleted) {
+            return ResponseEntity.ok("Company deleted successfully eith ID : "+id);
+        }
+        return new ResponseEntity<>("Company with id : "+id+" not found",HttpStatus.NOT_FOUND);
+    }
+
 }
