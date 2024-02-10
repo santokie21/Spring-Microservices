@@ -5,9 +5,7 @@ import io.noobi.jobapp.job.JobRepository;
 import io.noobi.jobapp.job.JobService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Optional;
 
 @Service
@@ -45,15 +43,27 @@ public class JobServiceImplementation implements JobService {
     }
 
     @Override
-    public boolean updateJob(Long id,Job updatedJob) {
-        Optional<Job> jobOptional=jobRepository.findById(id);
-        if(jobOptional.isPresent()) {
-            Job job= jobOptional.get();
-            if(updatedJob.getTitle()!=null)job.setTitle(updatedJob.getTitle());
-            if(updatedJob.getDescription()!=null)job.setDescription(updatedJob.getDescription());
-            if(updatedJob.getMinSalary()!=null)job.setMinSalary(updatedJob.getMinSalary());
-            if(updatedJob.getMaxSalary()!=null)job.setMaxSalary(updatedJob.getMaxSalary());
-            if(updatedJob.getLocation()!=null)job.setLocation(updatedJob.getLocation());
+    public boolean updateJob(Long id, Job updatedJob) {
+        Optional<Job> jobOptional = jobRepository.findById(id);
+
+        if (jobOptional.isPresent()) {
+            Job job = jobOptional.get();
+            if (updatedJob.getTitle() != null)
+                job.setTitle(updatedJob.getTitle());
+            if (updatedJob.getDescription() != null)
+                job.setDescription(updatedJob.getDescription());
+            if (updatedJob.getMinSalary() != null)
+                job.setMinSalary(updatedJob.getMinSalary());
+            if (updatedJob.getMaxSalary() != null)
+                job.setMaxSalary(updatedJob.getMaxSalary());
+            if (updatedJob.getLocation() != null)
+                job.setLocation(updatedJob.getLocation());
+            if(updatedJob.getCompany() != null) {
+                job.setCompany(updatedJob.getCompany());
+            }
+
+            jobRepository.save(job);
+
             return true;
         }
         return false;

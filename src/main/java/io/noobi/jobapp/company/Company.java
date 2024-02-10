@@ -1,31 +1,31 @@
-package io.noobi.jobapp.job;
+package io.noobi.jobapp.company;
 
-import io.noobi.jobapp.company.Company;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.noobi.jobapp.job.Job;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Job {
+public class Company {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String title;
+    private String name;
 
     private String description;
 
-    private String minSalary;
+    @JsonIgnore
+    @OneToMany(mappedBy = "company")
+    private List<Job> jobs;
 
-    private String maxSalary;
-
-    private String location;
-
-    @ManyToOne
-    private Company company;
 
 }
