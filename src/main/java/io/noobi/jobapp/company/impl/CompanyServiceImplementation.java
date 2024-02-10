@@ -34,7 +34,7 @@ public class CompanyServiceImplementation implements CompanyService {
 
     @Override
     public boolean deleteCompanyById(Long id) {
-        if(companyRepository.existsById(id)){
+        if (companyRepository.existsById(id)) {
             companyRepository.deleteById(id);
             return true;
         }
@@ -45,13 +45,13 @@ public class CompanyServiceImplementation implements CompanyService {
     public boolean updateCompany(Long id, Company updatedCompany) {
         Optional<Company> companyOptional = companyRepository.findById(id);
 
-        if(companyOptional.isPresent()) {
-            Company company= companyOptional.get();
-            if(updatedCompany.getName() != null)
+        if (companyOptional.isPresent()) {
+            Company company = companyOptional.get();
+            if (updatedCompany.getName() != null)
                 company.setName(updatedCompany.getName());
-            if(updatedCompany.getDescription() != null)
+            if (updatedCompany.getDescription() != null)
                 company.setDescription(updatedCompany.getDescription());
-            if(updatedCompany.getJobs() != null)
+            if (updatedCompany.getJobs() != null)
                 company.setJobs(updatedCompany.getJobs());
 
             companyRepository.save(company);

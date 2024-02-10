@@ -1,6 +1,5 @@
 package io.noobi.jobapp.company;
 
-
 import java.util.List;
 
 public interface CompanyService {

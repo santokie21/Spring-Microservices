@@ -40,7 +40,7 @@ public class JobController {
         if (job != null) {
             return ResponseEntity.ok(job);
         }
-        Job dummy = new Job(0L, "TestJob", "No jobs Found", "0 LPA", "0 LPA", "Unknown",null);
+        Job dummy = new Job(0L, "TestJob", "No jobs Found", "0 LPA", "0 LPA", "Unknown", null);
         return new ResponseEntity<>(dummy, HttpStatus.NOT_IMPLEMENTED);
     }
 
