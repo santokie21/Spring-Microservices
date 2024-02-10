@@ -2,6 +2,7 @@ package io.noobi.jobapp.company;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.noobi.jobapp.job.Job;
+import io.noobi.jobapp.review.Review;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,5 +28,8 @@ public class Company {
     @OneToMany(mappedBy = "company")
     private List<Job> jobs;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "company")
+    private List<Review> reviews;
 
 }

@@ -1,5 +1,6 @@
 package io.noobi.jobapp.review;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.noobi.jobapp.company.Company;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,5 +21,8 @@ public class Review {
     private String description;
 
     private Double rating;
-    
+
+    @JsonIgnore
+    @ManyToOne
+    private Company company;
 }
